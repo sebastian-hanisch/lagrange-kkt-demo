@@ -192,15 +192,20 @@ $\mu g_2=0$.
     st.caption(f"Max. Abweichung: {cc['max_abs_diff']:.2e}")
 
     st.markdown(
-        "**Ehrlicher Nebenbefund:** SciPy's SLSQP meldet `success=True` auch bei einem "
-        "schlechteren, nicht-globalen Optimum, wenn der Startwert ungünstig ist — das Problem "
-        "ist echt nichtkonvex (die Hesse-Matrix von f ist indefinit):"
+        "**Ehrlicher Nebenbefund** (im README auf einem konkreten SciPy-/LAPACK-Build gemessen, "
+        "~1,86 % Lücke): SciPy's SLSQP KANN `success=True` melden und trotzdem bei einem "
+        "schlechteren, nicht-globalen Optimum landen, wenn der Startwert ungünstig ist — das "
+        "Problem ist echt nichtkonvex (die Hesse-Matrix von f ist indefinit). Wie groß die Lücke "
+        "ausfällt, hängt vom internen Rundungsverhalten des SLSQP-Codes ab und ist daher nicht "
+        "auf jedem Rechner/jeder SciPy-Version identisch:"
     )
     pit = _scipy_pitfall(V0, h_max)
     p1, p2 = st.columns(2)
     p1.metric("Naiver Start (1,1): f", f"{pit['naive_f']:.4f}")
     p2.metric("Informierter Start: f", f"{pit['informed_f']:.4f}")
-    st.caption(f"Lücke: {pit['gap_percent']:.2f} % schlechter — trotz `success=True` bei beiden.")
+    st.caption(f"Lücke auf diesem Rechner: {pit['gap_percent']:.2f} % — trotz `success=True` bei "
+              "beiden. Ist die Lücke hier 0 %, hat SciPy auf dieser Plattform zufällig auch vom "
+              "naiven Start das globale Optimum gefunden (siehe Erklärung oben).")
 
     grad_err = _gradient_check()
     g1, g2 = st.columns(2)

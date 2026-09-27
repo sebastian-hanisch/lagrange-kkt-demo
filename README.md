@@ -85,9 +85,16 @@ $r\approx0{,}079$, $h\approx46$ statt der korrekten Lösung).
 $1{,}2\cdot10^{-7}$ bei $h_{\max}=5$ (inaktiv), $1{,}9\cdot10^{-9}$ bei $h_{\max}=1{,}5$ (aktiv).
 
 **Ehrlicher Nebenbefund — SciPy-Fallstrick:** bei $h_{\max}=5$ (Höhenlimit inaktiv) konvergiert
-SLSQP von Startwert $(1,1)$ zu $f=26{,}173$ (`success=True`), während der Startwert $(1{,}2,\,2{,}3)$
-das echte Optimum $f=25{,}695$ findet — eine Lücke von **1,86 %**, unsichtbar allein am
-`success`-Flag.
+SLSQP auf diesem Rechner (Windows, SciPy 1.18) von Startwert $(1,1)$ zu $f=26{,}173$
+(`success=True`), während der Startwert $(1{,}2,\,2{,}3)$ das echte Optimum $f=25{,}695$ findet —
+eine Lücke von **1,86 %**, unsichtbar allein am `success`-Flag. **Plattform-Hinweis:** die Größe
+dieser Lücke hängt am internen Rundungsverhalten des SLSQP-Fortran-Codes (LAPACK/BLAS-Build) —
+auf der Linux-CI dieses Repos reproduziert sich die exakte Zahl nicht (dort findet SLSQP von
+$(1,1)$ zufällig ebenfalls das globale Optimum). Die *Existenz* des Fallstricks (SciPy kann bei
+ungünstigem Start `success=True` UND ein nicht-globales Optimum liefern) ist der eigentliche,
+robuste Befund; die konkrete Prozentzahl ist eine Momentaufnahme dieses Rechners, kein
+Naturgesetz — dieselbe Lehre wie bei chaotischen Trainings-Trajektorien in der Neuronale-Netze-
+Linie, hier aber an einem deterministischen Solver statt an stochastischem Training.
 
 ## Modell und Verfahren
 
