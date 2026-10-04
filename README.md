@@ -15,10 +15,10 @@ Gradientenabstieg (WURZEL)                       [gebaut]
  └─ Newton-Verfahren                             [gebaut]
       └─ Quasi-Newton (BFGS/L-BFGS)               [gebaut]
            └─ Lagrange-Multiplikatoren/KKT        [DIESES STÜCK]
-                ├─ Straf-/Barriere-Verfahren      [nicht gebaut]
-                └─ SQP                            [nicht gebaut]
-                     └─ Innere-Punkte-Verfahren   [nicht gebaut]
- └─ Stochastische Gradientenverfahren             [nicht gebaut, letztes Stück]
+                ├─ Straf-/Barriere-Verfahren      [gebaut]
+                └─ SQP                            [gebaut]
+                     └─ Innere-Punkte-Verfahren   [gebaut]
+ └─ Stochastische Gradientenverfahren             [gebaut, letztes Stück]
 ```
 
 **Vehikel B (neu ab diesem Stück):** die Materialkosten (Oberfläche) eines zylindrischen
@@ -129,7 +129,7 @@ scheinbar harmloser Startwert wie $(1,1)$ liefert ein 1,86 % schlechteres Ergebn
 `success=True`.
 
 **Grenzen:** nur eine Gleichungs- und eine Ungleichungsnebenbedingung (mehr Ungleichungen würden
-mehr als zwei Fälle in der Enumeration brauchen — SQP/Innere-Punkte-Verfahren, kommende Stücke,
+mehr als zwei Fälle in der Enumeration brauchen — SQP/Innere-Punkte-Verfahren, Stück 6 und 7,
 lösen das systematischer).
 
 ## Tests
@@ -158,7 +158,7 @@ lösen das systematischer).
 
 Keine Mehrfach-Ungleichungen (bewusst bei genau einer gehalten, damit die
 Enumerations-plus-Verifikations-Methode von Hand nachvollziehbar bleibt). Kein allgemeiner
-KKT-Löser für beliebige Probleme — SQP und Innere-Punkte-Verfahren (kommende Stücke) sind die
+KKT-Löser für beliebige Probleme — SQP und Innere-Punkte-Verfahren (Stück 6 und 7) sind die
 systematische Antwort darauf.
 
 ## Lokal ausführen
@@ -176,3 +176,7 @@ streamlit run app.py
   Constraints.* Master-Arbeit, University of Chicago (unveröffentlicht).
 - Kuhn, H. W. & Tucker, A. W. (1951). *Nonlinear programming.* Proceedings of the 2nd Berkeley
   Symposium on Mathematical Statistics and Probability.
+
+---
+
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Nichtlineare Optimierung: acht Stücke, zwei Äste](https://sebastianhanisch.net/konzepte-nichtlineare-optimierung.html).

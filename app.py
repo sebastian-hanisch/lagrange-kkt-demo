@@ -69,7 +69,7 @@ st.markdown(
     "charakterisiert."
 )
 st.caption(
-    "Stück 4 der 'Nichtlineare Optimierung'-Reihe. Geplante Folgestücke (noch nicht gebaut): "
+    "Stück 4 der 'Nichtlineare Optimierung'-Reihe. Folgestücke (alle gebaut): "
     "Straf-/Barriere-Verfahren, SQP, Innere-Punkte-Verfahren, Stochastische Gradientenverfahren."
 )
 
@@ -157,7 +157,7 @@ st.markdown(
     "kann zu einem falschen, aber ebenfalls stationären Punkt konvergieren (siehe 📐) | "
     "Informierte Startwerte (hier bereits verwendet) |\n"
     "| Nur eine Ungleichung | Mehr Ungleichungen brauchen mehr als zwei Fälle in der "
-    "Enumeration | SQP/Innere-Punkte (kommende Stücke) |\n"
+    "Enumeration | SQP/Innere-Punkte (Stück 6 und 7) |\n"
     "| SciPy-Erfolgsmeldung bedeutet globales Optimum | Gilt hier NICHT: SLSQP kann bei einem "
     "ungünstigen Startwert bei einem schlechteren, lokalen Punkt landen (siehe 📐) | Eigene "
     "Korrektheits-Kette statt blindem Vertrauen in `success=True` |\n"
@@ -226,7 +226,7 @@ $\mu g_2=0$.
 
 st.markdown("---")
 st.caption(
-    "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) "
-    "– Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung "
-    "für Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Nichtlineare Optimierung: acht Stücke, zwei Äste](https://sebastianhanisch.net/konzepte-nichtlineare-optimierung.html)."
 )
