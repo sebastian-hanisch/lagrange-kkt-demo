@@ -36,7 +36,8 @@ def hand_derived_check(V0: float = 10.0) -> dict:
 def unconstrained_case_robustness(V0_values=(0.5, 1.0, 5.0, 10.0, 50.0, 100.0)) -> list:
     """Der informierte Startwert (aus Dimensionsanalyse) konvergiert zuverlaessig ueber
     verschiedene Groessenordnungen von V0 - im Gegensatz zu einem neutralen Startwert wie
-    (1,1,-1), der bei manchen V0 zu einem falschen, aber ebenfalls stationaeren Punkt fuehrt."""
+    (1,1,-1), bei dem das gedaempfte Newton-Verfahren fuer die meisten V0 stagniert (kein falscher
+    stationaerer Punkt: fuer r>0 hat das KKT-System nur die Loesung h=2r)."""
     rows = []
     for V0 in V0_values:
         r_star = (V0 / (2 * np.pi)) ** (1 / 3)
@@ -83,8 +84,8 @@ def scipy_cross_check(V0: float = 10.0, h_max: float = 5.0, x0=(1.2, 2.3)) -> di
 
 def scipy_local_optimum_pitfall(V0: float = 10.0, h_max: float = 5.0) -> dict:
     """Ehrlicher Nebenbefund: SLSQP von einem 'naiven' Startwert (1,1) konvergiert zu einem
-    schlechteren, nicht-globalen stationaeren Punkt und meldet trotzdem success=True - das
-    Problem ist echt nichtkonvex (die Hesse-Matrix von f ist indefinit)."""
+    schlechteren Punkt (kein weiteres lokales Optimum: auf der Volumenkurve ist f strikt konvex)
+    und meldet trotzdem success=True - vorzeitiger SLSQP-Abbruch mit Gradienten per Differenzen."""
 
     def f(x):
         return fn.surface_area(x)

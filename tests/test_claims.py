@@ -52,8 +52,8 @@ def test_claim_scipy_cross_check_matches_own_solution():
 
 def test_claim_scipy_naive_start_never_beats_the_informed_one():
     """Ehrlicher Nebenbefund (auf Windows/der lokal installierten SciPy-Version gemessen, siehe
-    README): SLSQP kann von Startwert (1,1) zu einem schlechteren, nicht-globalen Optimum
-    konvergieren und meldet trotzdem success=True. Die GROESSE der Luecke haengt am
+    README): SLSQP kann von Startwert (1,1) vorzeitig an einem schlechteren Punkt (kein weiteres
+    lokales Optimum, siehe tests/test_oracle_lagrange_kkt.py) abbrechen und meldet trotzdem success=True. Die GROESSE der Luecke haengt am
     SciPy-/LAPACK-Build (auf der Linux-CI reproduziert sich der exakte Wert nicht - andere
     interne Rundung im SLSQP-Fortran-Code fuehrt dort zufaellig zum globalen Optimum). Die
     Testsuite prueft deshalb nur die robuste, plattformunabhaengige Richtung: der informierte

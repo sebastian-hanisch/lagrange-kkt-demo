@@ -154,12 +154,12 @@ st.markdown(
     "| Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |\n"
     "|---|---|---|\n"
     "| Newton auf dem KKT-System startet nahe genug an der Lösung | Ein neutraler Startwert "
-    "kann zu einem falschen, aber ebenfalls stationären Punkt konvergieren (siehe 📐) | "
+    "lässt das gedämpfte Newton-Verfahren stagnieren (siehe 📐) | "
     "Informierte Startwerte (hier bereits verwendet) |\n"
     "| Nur eine Ungleichung | Mehr Ungleichungen brauchen mehr als zwei Fälle in der "
     "Enumeration | SQP/Innere-Punkte (Stück 6 und 7) |\n"
-    "| SciPy-Erfolgsmeldung bedeutet globales Optimum | Gilt hier NICHT: SLSQP kann bei einem "
-    "ungünstigen Startwert bei einem schlechteren, lokalen Punkt landen (siehe 📐) | Eigene "
+    "| SciPy-Erfolgsmeldung bedeutet Optimum | Gilt hier NICHT: SLSQP kann bei einem "
+    "ungünstigen Startwert vorzeitig an einem schlechteren Punkt abbrechen (siehe 📐) | Eigene "
     "Korrektheits-Kette statt blindem Vertrauen in `success=True` |\n"
 )
 
@@ -193,9 +193,10 @@ $\mu g_2=0$.
 
     st.markdown(
         "**Ehrlicher Nebenbefund** (im README auf einem konkreten SciPy-/LAPACK-Build gemessen, "
-        "~1,86 % Lücke): SciPy's SLSQP KANN `success=True` melden und trotzdem bei einem "
-        "schlechteren, nicht-globalen Optimum landen, wenn der Startwert ungünstig ist — das "
-        "Problem ist echt nichtkonvex (die Hesse-Matrix von f ist indefinit). Wie groß die Lücke "
+        "~1,86 % Lücke): SciPy's SLSQP KANN `success=True` melden und trotzdem an einem "
+        "schlechteren Punkt abbrechen, wenn der Startwert ungünstig ist (Gradienten per "
+        "Differenzen) — kein zweites lokales Optimum, denn auf der Volumenkurve ist f strikt "
+        "konvex und das Optimum eindeutig. Wie groß die Lücke "
         "ausfällt, hängt vom internen Rundungsverhalten des SLSQP-Codes ab und ist daher nicht "
         "auf jedem Rechner/jeder SciPy-Version identisch:"
     )
@@ -205,7 +206,7 @@ $\mu g_2=0$.
     p2.metric("Informierter Start: f", f"{pit['informed_f']:.4f}")
     st.caption(f"Lücke auf diesem Rechner: {pit['gap_percent']:.2f} % — trotz `success=True` bei "
               "beiden. Ist die Lücke hier 0 %, hat SciPy auf dieser Plattform zufällig auch vom "
-              "naiven Start das globale Optimum gefunden (siehe Erklärung oben).")
+              "naiven Start das Optimum gefunden (siehe Erklärung oben).")
 
     grad_err = _gradient_check()
     g1, g2 = st.columns(2)

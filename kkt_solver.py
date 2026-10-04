@@ -57,8 +57,8 @@ def _newton_damped(F, x0, max_iter=100, tol=1e-10):
 def solve_unconstrained_case(V0: float) -> KKTSolution:
     """Stationaritaet + Volumen-Nebenbedingung, ohne Hoehenlimit: [nabla f + lam*nabla g1 = 0,
     g1 = 0]. Startwert aus Dimensionsanalyse (r,h ~ V0^(1/3), lambda ~ -2/r) - ein neutraler
-    Startpunkt wie (1,1,-1) kann bei kleinem/grossem V0 zu einem falschen, aber ebenfalls
-    stationaeren Punkt konvergieren (siehe README)."""
+    Startpunkt wie (1,1,-1) laesst das gedaempfte Newton-Verfahren bei den meisten V0 stagnieren
+    (kein falscher stationaerer Punkt: fuer r>0 hat das System nur die Loesung h=2r; siehe README)."""
 
     def F(v):
         r, h, lam = v
